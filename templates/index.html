@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion AI | Intelligent Classifier</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent py-1" style="background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border-bottom: px solid rgba(255,255,255,0.08);">
+    <div class="container-fluid px-4 px-lg-5">
+        <a class="navbar-brand fw-bold fs-3" href="/">
+            <i class="fa-solid fa-brain-circuit text-info me-2"></i>EMOTION.<span class="text-info">AI</span>
+        </a>
+
+        <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/workflow">Workflow</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-outline-info rounded-pill px-3" href="https://github.com/shivareddy2002" target="_blank">GitHub</a>
+                    <a class="btn btn-outline-info rounded-pill px-2" href="https://www.linkedin.com/in/lomada-siva-gangi-reddy-a64197280/" target="_blank">LinkedIn</a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<main class="container-fluid px-4 px-lg-5 pt-5 mt-4">
+    <div class="row min-vh-100 align-items-center justify-content-center">
+        <div class="col-12 col-xl-9 col-xxl-8 text-center">
+
+            <h1 class="display-6 fw-bold text-white mb-2">
+                <span class="text-gradient">Decode Human Sentiment</span>
+            </h1>
+
+            <p class="text-light-50 mb-3">
+                Leveraging state-of-the-art <b>Bidirectional LSTM</b> neural networks to detect emotional nuances in text with precision.
+            </p>
+
+            <!-- ANALYZER -->
+            <div class="card analyzer-card shadow-2xl p-3 border-opacity-10 rounded-5 text-start">
+                <label class="text-primary medium text-uppercase fw-bold mb-1">Input Analysis</label>
+
+                <textarea id="userInput"
+                    class="form-control mb-2"
+                    rows="2"
+                    placeholder="Describe your mood or paste a conversation snippet here..."></textarea>
+
+                <button onclick="analyzeEmotion()" id="btnAnalyze"
+                    class="btn btn-info btn-lg w-100 rounded-pill fw-bold py-2 shadow-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Analyze Sentiment
+                </button>
+            </div>
+
+            <!-- RESULT BOX -->
+            <div id="resultContainer" class="mt-3 d-none animate-up">
+                <div class="result-box p-3 rounded-4 text-start">
+                    <h6 class="text-white-50 mb-2">Detection Result</h6>
+
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3 class="mb-0 text-white fw-bold">
+                            <span id="emotionLabel" class="text-info">Joy</span>
+                        </h3>
+
+                        <div class="text-end">
+                            <span class="text-white-50 d-block small">Confidence</span>
+                            <h5 class="text-white mb-0" id="confidenceLabel">98.5%</h5>
+                        </div>
+                    </div>
+
+                    <div class="progress mt-2 bg-dark" style="height: 6px;">
+                        <div id="confidenceBar"
+                             class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                             role="progressbar" style="width: 98%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAMPLE STRIP -->
+            <div class="analyzer-card rounded-4 py-2 px-4 mt-3 text-center">
+                <div class="text-info fw-semibold text-uppercase mb-2">
+                    Try a sample
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
+                    <button class="emotion-chip btn btn-sm btn-outline-success" onclick="fillSample('I am feeling very happy today!')">
+                        <i class="fa-solid fa-face-smile me-1"></i> Joy
+                    </button>
+                    <button class="emotion-chip btn btn-sm btn-outline-primary" onclick="fillSample('Everything feels pointless and empty.')">
+                        <i class="fa-solid fa-face-sad-tear me-1"></i> Sadness
+                    </button>
+                    <button class="emotion-chip btn btn-sm btn-outline-danger" onclick="fillSample('I am really angry about what happened.')">
+                        <i class="fa-solid fa-face-angry me-1"></i> Anger
+                    </button>
+                    <button class="emotion-chip btn btn-sm btn-outline-warning" onclick="fillSample('I am scared about my future.')">
+                        <i class="fa-solid fa-face-grimace me-1"></i> Fear
+                    </button>
+                    <button class="emotion-chip btn btn-sm btn-outline-info" onclick="fillSample('I love spending time with you.')">
+                        <i class="fa-solid fa-heart me-1"></i> Love
+                    </button>
+                    <button class="emotion-chip btn btn-sm btn-outline-light" onclick="fillSample('Wow, I never expected that!')">
+                        <i class="fa-solid fa-face-surprise me-1"></i> Surprise
+                    </button>
+                </div>
+            </div>
+
+            <!-- FEATURES (reduce top margin) -->
+            <div class="row mt-0 mb-3 g-4 text-center">
+                <div class="col-md-4">
+                    <div class="card analyzer-card p-3 rounded-4 border-0 h-100">
+                        <i class="fa-solid fa-bolt text-warning fs-3 mb-2"></i>
+                        <h6 class="text-white mb-1">Real-Time</h6>
+                        <small class="text-white-50">Instant emotion detection</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card analyzer-card p-3 rounded-4 border-0 h-100">
+                        <i class="fa-solid fa-brain text-info fs-3 mb-2"></i>
+                        <h6 class="text-white mb-1">BiLSTM Powered</h6>
+                        <small class="text-white-50">Understands context deeply</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card analyzer-card p-3 rounded-4 border-0 h-100">
+                        <i class="fa-solid fa-layer-group text-success fs-3 mb-2"></i>
+                        <h6 class="text-white mb-1">6 Emotions</h6>
+                        <small class="text-white-50">Joy, Sadness, Anger, Fear, Love, Surprise</small>
+                    </div>
+                </div>
+            </div>
+
+
+                
+            </div>
+        </div>
+    </main>
+    
+
+    <!-- FOOTER -->
+<!-- FOOTER (reduce vertical padding) -->
+<footer class="container-fluid px-4 px-lg-5 py-3 text-center text-white-50 border-top border-secondary">
+    <p class="mb-0">&copy; 2026 Emotion AI Lab. Powered by TensorFlow & Flask.</p>
+</footer>
+
+
+    <script>
+        function fillSample(text) {
+            const input = document.getElementById("userInput");
+            input.value = text;
+            input.focus();
+            input.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

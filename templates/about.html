@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Emotion AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent py-1" style="background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border-bottom: px solid rgba(255,255,255,0.08);">
+    <div class="container-fluid px-4 px-lg-5">
+        <a class="navbar-brand fw-bold fs-3" href="/">
+            <i class="fa-solid fa-brain-circuit text-info me-2"></i>EMOTION.<span class="text-info">AI</span>
+        </a>
+
+        <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/workflow">Workflow</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-outline-info rounded-pill px-3" href="https://github.com/shivareddy2002" target="_blank">GitHub</a>
+                    <a class="btn btn-outline-info rounded-pill px-2" href="https://www.linkedin.com/in/lomada-siva-gangi-reddy-a64197280/" target="_blank">LinkedIn</a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="container mt-5 pb-5 pt-3">
+        <div class="row align-items-start g-5">
+            <!-- LEFT COLUMN -->
+            <div class="col-lg-6">
+                <h1 class="fw-bold text-gradient display-10 mb-3">The Intelligence Behind the Sentiment</h1>
+                <p class="text-white-50 fs-6">
+                    This Emotion Classifier is a Deep Learning application designed to detect nuanced human sentiments from raw text data with high accuracy.
+                </p>
+
+                <div class="card analyzer-card p-3 rounded-4 mt-3 border-0">
+                    <h3 class="text-info mb-3"><i class="fa-solid fa-microchip me-2"></i>The LSTM Model</h3>
+                    <p class="text-white-50 mb-0">
+                        Built using <strong>TensorFlow and Keras</strong>, the system utilizes a 
+                        <strong>Long Short-Term Memory (LSTM)</strong> network. Unlike standard neural networks, 
+                        LSTMs are designed for sequential data, allowing the model to understand context and long-term dependencies.
+                    </p>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="row mt-3 g-2">
+                    <div class="col-md-4">
+                        <div class="card analyzer-card p-2 rounded-4 border-0 text-center h-100">
+                            <i class="fa-solid fa-bolt text-warning fs-3 mb-2"></i>
+                            <h6 class="text-white mb-1">Real-Time</h6>
+                            <small class="text-white-50">Instant predictions</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card analyzer-card p-2 rounded-4 border-0 text-center h-100">
+                            <i class="fa-solid fa-bullseye text-success fs-3 mb-2"></i>
+                            <h6 class="text-white mb-1">Accurate</h6>
+                            <small class="text-white-50">Trained on labeled data</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card analyzer-card p-2 rounded-4 border-0 text-center h-100">
+                            <i class="fa-solid fa-layer-group text-info fs-3 mb-2"></i>
+                            <h6 class="text-white mb-1">Multi-Class</h6>
+                            <small class="text-white-50">6 emotion types</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card analyzer-card p-3 rounded-4 mt-4 border-0">
+                    <h5 class="text-info mb-3">
+                        <i class="fa-solid fa-lightbulb me-2"></i>Why It Matters
+                    </h5>
+                    <p class="text-white-50 mb-0">
+                        Emotion-aware systems enable smarter customer support, mental health analysis,
+                        social media monitoring, and feedback intelligence. This model transforms raw text
+                        into actionable emotional insight.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+<div class="col-lg-6">
+    <div class="card analyzer-card p-3 rounded-4 border-0 text-center mb-4">
+        <h5 class="text-info fw-semibold mb-3">
+            <i class="fa-solid fa-diagram-project me-2"></i>LSTM Architecture
+        </h5>
+
+        <img 
+            src="/static/image.png"
+            alt="LSTM Cell Diagram showing forget, input, and output gates"
+            class="img-fluid rounded shadow-sm animate-up"
+        >
+    </div>
+
+    <div class="card analyzer-card p-3 rounded-4 border-0">
+        <h3 class="text-white mb-4">Classification Spectrum</h3>
+        <div class="list-group list-group-flush bg-transparent">
+            <div class="list-group-item bg-transparent text-white border-secondary">
+                <i class="fa-solid fa-face-smile text-success me-3"></i> Joy
+            </div>
+            <div class="list-group-item bg-transparent text-white border-secondary">
+                <i class="fa-solid fa-face-sad-tear text-primary me-3"></i> Sadness
+            </div>
+            <div class="list-group-item bg-transparent text-white border-secondary">
+                <i class="fa-solid fa-face-angry text-danger me-3"></i> Anger
+            </div>
+            <div class="list-group-item bg-transparent text-white border-secondary">
+                <i class="fa-solid fa-face-grimace text-warning me-3"></i> Fear
+            </div>
+            <div class="list-group-item bg-transparent text-white border-secondary">
+                <i class="fa-solid fa-heart text-info me-3"></i> Love
+            </div>
+            <div class="list-group-item bg-transparent text-white border-0">
+                <i class="fa-solid fa-face-surprise text-light me-3"></i> Surprise
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</body>
+    <!-- FOOTER -->
+<!-- FOOTER (reduce vertical padding) -->
+<footer class="container-fluid px-4 px-lg-5 py-3 text-center text-white-50 border-top border-secondary">
+    <p class="mb-0">&copy; 2026 Emotion AI Lab. Powered by TensorFlow & Flask.</p>
+</footer>
+</html>
